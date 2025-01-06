@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Navigation Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+  <style>
+    .menu-toggle-icon {
+      transition: transform 0.3s ease;
+    }
+    .menu-toggle-icon.open {
+      transform: rotate(45deg);
+    }
+    .menu-item.active {
+      background-color: #001A6E !important;
+      color: #FFFFFF !important;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen" style="background-color: #E5D9F2;">
+  <!-- Bottom Navigation -->
+  <div class="relative flex items-center bg-white rounded-full shadow-lg p-4 gap-6">
+    <!-- Toggle Button -->
+    <button id="menuToggle" class="flex items-center justify-center w-14 h-14 text-white rounded-full transition-transform hover:scale-110 z-10" style="background-color: #A594F9;">
+      <span id="icon" class="menu-toggle-icon text-3xl font-bold">+</span>
+    </button>
+
+    <!-- Menu Items -->
+    <div id="menuItems" class="flex gap-6 opacity-0 transform scale-75 transition-all pointer-events-none absolute left-0 ml-20">
+      <button class="menu-item flex items-center justify-center w-12 h-12 text-white rounded-full hover:bg-opacity-75" style="background-color: #CDC1FF;">
+        <i class="fas fa-home text-2xl"></i>
+      </button>
+      <button class="menu-item flex items-center justify-center w-12 h-12 text-white rounded-full hover:bg-opacity-75" style="background-color: #CDC1FF;">
+        <i class="fas fa-envelope text-2xl"></i>
+      </button>
+      <button class="menu-item flex items-center justify-center w-12 h-12 text-white rounded-full hover:bg-opacity-75" style="background-color: #CDC1FF;">
+        <i class="fas fa-phone text-2xl"></i>
+      </button>
+      <button class="menu-item flex items-center justify-center w-12 h-12 text-white rounded-full hover:bg-opacity-75" style="background-color: #CDC1FF;">
+        <i class="fas fa-cogs text-2xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuItems = document.getElementById('menuItems');
+    const icon = document.getElementById('icon');
+    const menuItemButtons = document.querySelectorAll('.menu-item');
+
+    menuToggle.addEventListener('click', () => {
+      menuItems.classList.toggle('opacity-0');
+      menuItems.classList.toggle('scale-75');
+      menuItems.classList.toggle('pointer-events-none');
+      icon.classList.toggle('open');
+    });
+
+    menuItemButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        menuItemButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
